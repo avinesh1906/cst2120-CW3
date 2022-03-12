@@ -60,16 +60,19 @@
         <div class="loginForm">
             <!-- Username -->
             <div class="email">
+                <label for="email">Email</label>
                 <input autocomplete="off" type="text" class="form-control" id="email" onkeyup="emailValidation()" placeholder="email">
                 <span id="usr_details"></span>
             </div>
             <!-- Password -->
             <div class="password">
+                <label for="password">Password</label>
                 <input  autocomplete="off" type="password" class="form-control" id="password" onkeyup="passwordValidation()" placeholder="password">
                 <span id="pwd_details"></span>
             </div>
             <!-- Login submit button -->
             <div class="login_btn">
+                <button>Register Instead?</button>   
                 <button onclick="login()" id="login">Sign In </button>   
             </div>
         </div>

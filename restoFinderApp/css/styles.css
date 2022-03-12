@@ -1,23 +1,29 @@
+/* body css */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto';
 }
+/* top body CSS */
 .top {
     display: flex;
 }
+/* left part of top body css */
 .top .left {
     width: 65%;
 }
+/* right part of top body css */
 .top .right {
     float: right;
     width: 50%;
 }
+/* image in top right css */
 .top .right img {
     width: 100%;
     height: 99.4vh;
 }
-.title {
+/* title css */
+.top .left .title {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -25,20 +31,24 @@ body {
     width: 100%;
 } 
 
-.title .logo {
+/* logo in top left title css */
+.top .left .title .logo {
     width: 250px;
     padding-left: 2%;
 }
 
-.title .logo img {
+/* image in logo class in top left title css */
+.top .left .title .logo img {
     width: 250px;
 }
 
-.title .text {
+/* top left title text css */
+.top .left .title .text {
     width: 50%;
 }
 
-.description {
+/* top left description css */
+.top .left .description {
     margin-top: 5%;
     display: flex;
     justify-content: center;
@@ -46,30 +56,35 @@ body {
     padding-left: 2em;
 }
 
-.description .dynamic {
+/* dynamic text in top left description css */
+.top .left .description .dynamic {
     font-size: 30px;
     height: auto;
     min-height: 35px;
 }
 
-.description .static {
+/* static text in top left description css */
+.top .left .description .static {
     font-size: 25px;
     color: #AD8B73 ;
 }
 
-.choice {
+/* top left region choice css */
+.top .left .choice {
     margin-top: 5%;
     margin-left: 3%;
 }
 
-.choice .search_bar {
+/* search bar for top left choice css */
+.top .left .choice .search_bar {
     width: 80%;
     padding: 1%;
     font-size: 1.1em;
     height: 65px;
 }
 
-#search button{
+/* top left search button css */
+.top .left #search button{
     width: 100px;
     height: 60px;
     font-size: 25px;
@@ -78,9 +93,52 @@ body {
     border: solid 2px black;
 }
 
+/* link css */
 .link {
     font-size: 20px;
     padding-left: 5%;
     padding-top: 15%;
     color: #051367;
+}
+
+/* login admin CSS */
+.loginAdmin {
+    padding-top: 1%;
+    font-size: 30px;
+}
+
+.loginAdmin .header #title {
+    text-align: center;
+    font-size: 45px;
+    color: #AD8B73;
+}
+
+.loginForm {
+    text-align: left;
+    border: 1px solid black;
+    margin: 1% 25% 2%;
+    padding: 1% 1% 1%;
+}
+
+.loginForm label {
+    display: inline-block;
+    width: 150px;
+}
+
+.loginForm input {
+    width: 500px;
+    height: 35px;
+    font-size: 25px;
+    margin: 2% 0% 2%;
+    padding-left: 1%;
+}
+
+.loginForm .login_btn {
+    text-align: center;
+}
+
+.loginForm .login_btn button {
+    width: 200px;
+    font-size: 22px;
+    margin: 1% 2%;
 }
