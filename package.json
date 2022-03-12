@@ -1,0 +1,24 @@
+{
+  "name": "cst2120-cw3",
+  "version": "1.0.0",
+  "description": "To create a single web application to find nearby restaurant depending on your location",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avinesh1906/cst2120-CW3.git"
+  },
+  "author": "Avinesh Culloo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avinesh1906/cst2120-CW3/issues"
+  },
+  "homepage": "https://github.com/avinesh1906/cst2120-CW3#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "http": "^0.0.1-security",
+    "mysql": "^2.18.1"
+  }
+}

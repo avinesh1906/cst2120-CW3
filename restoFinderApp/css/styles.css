@@ -1,0 +1,86 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto';
+}
+.top {
+    display: flex;
+}
+.top .left {
+    width: 65%;
+}
+.top .right {
+    float: right;
+    width: 50%;
+}
+.top .right img {
+    width: 100%;
+    height: 99.4vh;
+}
+.title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 35px;
+    width: 100%;
+} 
+
+.title .logo {
+    width: 250px;
+    padding-left: 2%;
+}
+
+.title .logo img {
+    width: 250px;
+}
+
+.title .text {
+    width: 50%;
+}
+
+.description {
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 2em;
+}
+
+.description .dynamic {
+    font-size: 30px;
+    height: auto;
+    min-height: 35px;
+}
+
+.description .static {
+    font-size: 25px;
+    color: #AD8B73 ;
+}
+
+.choice {
+    margin-top: 5%;
+    margin-left: 3%;
+}
+
+.choice .search_bar {
+    width: 80%;
+    padding: 1%;
+    font-size: 1.1em;
+    height: 65px;
+}
+
+#search button{
+    width: 100px;
+    height: 60px;
+    font-size: 25px;
+    color: #FFFBE9;
+    background-color: #AD8B73;
+    border: solid 2px black;
+}
+
+.link {
+    font-size: 20px;
+    padding-left: 5%;
+    padding-top: 15%;
+    color: #051367;
+}
