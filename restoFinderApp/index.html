@@ -13,55 +13,76 @@
 
     <!-- External CSS -->
     <link href="./css/styles.css" type="text/css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
 <body>
+    <!-- top page class -->
     <div class="top">
+        <!-- left side of top page -->
         <div class="left">
+            <!-- title -->
             <div class="title">
+                <!-- logo -->
                 <div class="logo">
                     <img src="./img/logo.png" alt="top-left image">
                 </div>
+                <!-- title text -->
                 <div class="text">
                     RestoFinder.mu
                 </div>
             </div>
+            <!-- top page description -->
             <div class="description">
+                <!-- dynamic text -->
                 <div class="dynamic">
                     <span id="typewriter"></span>
                 </div>
+                <!-- static text -->
                 <div class="static">
                     Find awesome restaurants near you.
                 </div>
             </div>
+            <!-- region choice class -->
             <div class="choice">
-                <select class="search_bar">
+                <select class="search_bar" id="search_bar">
                 </select>
                 <a id="search">
-                    <button>
+                    <button onclick="searchRegion()">
                         Search
                     </button>
                 </a>
             </div>
+            <!-- register restaurant link -->
             <div class="link">
                 Register Restaurant?
             </div>
         </div>
+        <!-- top right class -->
         <div class="right">
+            <!-- image -->
             <img src="./img/Escale-Creole.jpg" alt="top-left image">
         </div>
     </div>
+    <!-- login class for administrator -->
     <div class="loginAdmin">
+        <!-- header class -->
         <div class="header">
+            <!-- home link -->
             <div id="link">Home</div>
+            <!-- title -->
             <div id="title">
                 Login
             </div>
         </div>
+        <!-- login form class -->
         <div class="loginForm">
             <!-- Username -->
             <div class="email">
-                <label for="email">Email</label>
-                <input autocomplete="off" type="text" class="form-control" id="email" onkeyup="emailValidation()" placeholder="email">
+                <label for="usr_email">Email</label>
+                <input autocomplete="off" type="text" class="form-control" id="usr_email" onkeyup="emailValidation()" placeholder="email">
                 <span id="usr_details"></span>
             </div>
             <!-- Password -->
@@ -77,6 +98,120 @@
             </div>
         </div>
     </div>
+    <!-- register a restaurant class -->
+    <div class="restoRegistration">
+        <div class="header">
+            <div id="link">Home</div>
+            <div id="title">
+                Register a Restaurant
+            </div>
+        </div>
+        <div class="registerForm">
+            <!-- Name -->
+            <div class="name">
+                <label for="name">Restaurant Name</label>
+                <input autocomplete="off" type="text" class="form-control" id="name">
+                <span id="name_details"></span>
+            </div>
+            <!-- Street Name -->
+            <div class="street">
+                <label for="street">Steet Name</label>
+                <input autocomplete="off" type="text" class="form-control" id="street">
+                <span id="street_details"></span>
+            </div>
+            <!-- Town -->
+            <div class="town">
+                <label for="town">Village/Town/City</label>
+                <input autocomplete="off" type="text" class="form-control" id="town">
+                <span id="town_details"></span>
+            </div>
+            <!-- Region -->
+            <div class="region">
+                <label for="region">Region</label>
+                <select name="region" id="registerRegion">
+
+                </select>
+            </div>
+            <!-- Time -->
+            <div class="time">
+                <div class="time_header">
+                    <div id="title">Time</div>
+                    <div id="opening_header">Opening</div>
+                    <div id="closing_header">Closing</div>
+                </div>
+                <!-- Monday -->
+                <div class="monday">
+                    <div id="subtitle">Monday</div>
+                    <input class="opening" id="monday_opening"type="time">
+                    <input class="closing" id="monday_closing"type="time">
+                </div>
+                <!-- Tuesday -->
+                <div class="tuesday">
+                    <div id="subtitle">Tuesday</div>
+                    <input class="opening" id="tuesday_opening" type="time">
+                    <input class="closing" id="tuesday_closing" type="time">
+                </div>
+                <!-- Wednesday -->
+                <div class="wednesday">
+                    <div id="subtitle">Wednesday</div>
+                    <input class="opening" id="wednesday_opening" type="time">
+                    <input class="closing" id="wednesday_closing" type="time">
+                </div>
+                <!-- Thursday -->
+                <div class="thursday">
+                    <div id="subtitle">Thursday</div>
+                    <input class="opening" id="thursday_opening" type="time">
+                    <input class="closing" id="thursday_closing" type="time">
+                </div>
+                <!-- Friday -->
+                <div class="friday">
+                    <div id="subtitle">Friday</div>
+                    <input class="opening" id="friday_opening" type="time">
+                    <input class="closing" id="friday_closing" type="time">
+                </div>
+                <!-- Saturday -->
+                <div class="saturday">
+                    <div id="subtitle">Saturday</div>
+                    <input class="opening" id="saturday_opening" type="time">
+                    <input class="closing" id="saturday_closing" type="time">
+                </div>
+                <!-- Sunday -->
+                <div class="sunday">
+                    <div id="subtitle">Sunday</div>
+                    <input class="opening" id="sunday_opening" type="time">
+                    <input class="closing" id="sunday_closing" type="time">
+                </div>               
+            </div>
+            <!-- Telephone -->
+            <div class="telephone">
+                <label for="telephone">Telephone</label>
+                <input autocomplete="off" type="text" class="form-control" id="telephone">
+                <span id="tel_details"></span>
+            </div>
+            <!-- Email -->
+            <div class="email">
+                <label for="email">Email</label>
+                <input autocomplete="off" type="text" class="form-control" id="email">
+                <span id="email_details"></span>
+            </div>
+            <!-- cuisine details -->
+            <div class="cuisineDetails">
+                <label for="cuisineDetails">Cuisine Details</label>
+                <textarea cols="30" rows="5" id="cuisineDetails"></textarea>
+                <span id="cuisineDetails_details"></span>
+            </div>
+        </div>
+        <!-- Register Button -->
+        <div class="registerBtn">
+            <button>Cancel</button>   
+            <button onclick="register()" id="register">Register</button>   
+        </div>
+    </div>
+    <!-- Restaurant Details -->
+    <div class="accordion">
+        
+    </div>
+    <!-- script -->
     <script src="./js/dynamicString.js"></script>
     <script src="./js/client.js"></script>
     <script src="./js/validation.js"></script>

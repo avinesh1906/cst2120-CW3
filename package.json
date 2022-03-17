@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/avinesh1906/cst2120-CW3#readme",
   "dependencies": {
+    "bootstrap": "^5.1.3",
     "express": "^4.17.3",
     "http": "^0.0.1-security",
     "mysql": "^2.18.1"

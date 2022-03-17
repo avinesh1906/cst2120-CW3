@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 
 //Import the mysql module
 const mysql = require('mysql');
+const res = require('express/lib/response');
 
 //Create a connection pool with the user details
 const connectionPool = mysql.createPool({
@@ -43,6 +44,48 @@ async function getRegion(){
   });
 }
 
+/* Returns a promise to get specific regions. */
+async function getSpecificRegion(regionID){
+    //Build query
+    let sql = "SELECT restaurant.id, restaurant.name, restaurant.street, restaurant.city," + 
+    "restaurant.phone, restaurant.email, restaurant.cuisine_details, region.name AS region_name " +
+    "FROM restaurant INNER JOIN region " +
+    "ON restaurant.region = region.id " +
+    "WHERE restaurant.region =" + regionID;
+    
+    //Wrap the execution of the query in a promise
+    return new Promise ( (resolve, reject) => { 
+        connectionPool.query(sql, (err, result) => {
+            if (err){//Check for errors
+                reject("Error executing query: " + JSON.stringify(err));
+            }
+            else{//Resolve promise with results
+                resolve(result);
+            }
+        });
+    });
+  }
+
+/* Returns a promise to get specific business_hours. */
+async function getSpecificTime(regionID){
+    //Build query
+    let sql = "SELECT business_hours.* "+
+    "FROM restaurant INNER JOIN business_hours ON restaurant.id = business_hours.restaurant_id "+
+    "WHERE restaurant.region = " + regionID; 
+
+    //Wrap the execution of the query in a promise
+    return new Promise ( (resolve, reject) => { 
+        connectionPool.query(sql, (err, result) => {
+            if (err){//Check for errors
+                reject("Error executing query: " + JSON.stringify(err));
+            }
+            else{//Resolve promise with results
+                resolve(result);
+            }
+        });
+    });
+  }
+
 /* Returns a promise to get specific user. */
 async function getUsr(userEmail){
     //Build query
@@ -61,6 +104,37 @@ async function getUsr(userEmail){
     });
   }
   
+/* Returns a promise to get specific user. */
+async function postResto(register_Obj){
+    //Build query to insert into restaurant
+    let restoSql = "INSERT INTO restaurant (name, street, city, region, phone, email, cuisine_details) VALUES" +
+                "('"+ register_Obj['name']+"','"+ register_Obj['street'] +"','"+ register_Obj['town'] +"'," +
+                "'"+ register_Obj['region'] +"','"+ register_Obj['telephone'] + "','"+ register_Obj['email'] + "','"+ register_Obj['cuisineDetails'] + "')";
+    //Wrap the execution of the query in a promise
+    return new Promise ( (resolve, reject) => { 
+        connectionPool.query(restoSql, (err, result) => {
+            if (err){//Check for errors
+                reject("Error executing query: " + JSON.stringify(err));
+            }
+            else{//Resolve promise with results
+                //Build query to insert into business_hours
+                for (var key in register_Obj.time) {
+                    let time_sql = "INSERT INTO business_hours"  +
+                    "(restaurant_id, day, opening_time, closing_time) VALUES" +
+                    "('"+ result.insertId +"', '"+ key+"', '"+ register_Obj.time[key][0] +"', '"+ register_Obj.time[key][1] +"')";
+                    //Execute query and output results
+                    connectionPool.query(time_sql, (err, time_result) => {
+                        if (err){//Check for errors
+                            console.error("Error executing query: " + JSON.stringify(err));
+                        }
+                    });
+                }
+                resolve(result);
+            }
+        });
+    });
+  }
+
 //Execute promise
 getRegion().then ( result => {
   //Append to region Array.
@@ -70,18 +144,19 @@ getRegion().then ( result => {
   console.error(JSON.stringify(err));
 });
 
-//Set up application to handle GET requests sent to the user path
-app.get('/region', handleGetRequest);//Returns all users
-app.post('/validateUsr', handlePostUsrRequest);//Validate user
+//Set up application to handle GET requests 
+app.get('/region', handleGetRegionRequest);//Returns all regions
+app.get('/region/:data', handleGetRegionRequest);//Returns specific region
 
-//Set up application to handle POST requests sent to the user path
-// app.post('/validateUsr', handlePostRequest);//Validate user
+//Set up application to handle POST requests
+app.post('/validateUsr', handlePostUsrRequest);//Validate user
+app.post('/registerResto', handlePostRestoRequest);//Register restaurant
 
 //Start the app listening on port 8080
 app.listen(8080);
 
 //Handles GET requests to our web service
-function handleGetRequest(request, response){
+function handleGetRegionRequest(request, response){
     //Split the path of the request into its components
     var pathArray = request.url.split("/");
 
@@ -91,8 +166,28 @@ function handleGetRequest(request, response){
     //If path ends with 'users' we return all users
     if(pathEnd === 'region'){
         response.send(regionArray);
+    } else if (request.query.data) {
+        let id = JSON.parse(request.query.data);
+        
+        //Execute promise
+        getSpecificRegion(id['region']).then ( result => {
+            //return result.
+            response.send(JSON.stringify(result));
+        }).catch( err => {//Handle the error
+            console.error(JSON.stringify(err));
+            response.send("0");
+        });
+    } else if (request.query.time){
+        let id = JSON.parse(request.query.time);
+        //Execute promise
+        getSpecificTime(id['region']).then ( timeResult => {
+            //return result.
+            response.send(JSON.stringify(timeResult));
+        }).catch( err => {//Handle the error
+            console.error(JSON.stringify(err));
+            response.send("0");
+        });
     }
-
     //The path is not recognized. Return an error message
     else
         response.send("{error: 'Path not recognized'}");
@@ -119,6 +214,33 @@ function handlePostUsrRequest(request, response){
                 response.send("0");
             }
         }).catch( err => {//Handle the error
+            response.send("0");
+        });
+    }
+
+    //The path is not recognized. Return an error message
+    else
+        response.send("{error: 'Path not recognized'}");
+}
+
+// function to register a restaurant
+function handlePostRestoRequest(request, response){
+    //Split the path of the request into its components
+    var pathArray = request.url.split("/");
+
+    //Get the last part of the path
+    var pathEnd = pathArray[pathArray.length - 1];
+
+    if (pathEnd === 'registerResto'){
+        // retrieve the user object
+        let register_Obj = request.body;
+
+        //Execute promise
+        postResto(register_Obj).then ( result => {
+            //Append to region Array.
+            response.send("1");
+        }).catch( err => {//Handle the error
+            console.error(JSON.stringify(err));
             response.send("0");
         });
     }

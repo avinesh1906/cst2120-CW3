@@ -107,12 +107,14 @@ body {
     font-size: 30px;
 }
 
+/* login admin header title css */
 .loginAdmin .header #title {
     text-align: center;
     font-size: 45px;
     color: #AD8B73;
 }
 
+/* login form css */
 .loginForm {
     text-align: left;
     border: 1px solid black;
@@ -120,11 +122,13 @@ body {
     padding: 1% 1% 1%;
 }
 
+/* login form label css */
 .loginForm label {
     display: inline-block;
     width: 150px;
 }
 
+/* login form input css */
 .loginForm input {
     width: 500px;
     height: 35px;
@@ -133,12 +137,186 @@ body {
     padding-left: 1%;
 }
 
+/* login btn class css for login form  */
 .loginForm .login_btn {
     text-align: center;
 }
 
-.loginForm .login_btn button {
+/* login button for login form css */
+.loginForm .login_btn button,
+.restoRegistration .registerBtn button {
     width: 200px;
     font-size: 22px;
     margin: 1% 2%;
+}
+
+/* Register a restaurant CSS */
+/* header title CSS */
+.restoRegistration .header #title {
+    text-align: center;
+    color: #AD8B73;
+    font-size: 45px;
+}
+
+/* header link CSS */
+.restoRegistration .header #link {
+    font-size: 30px;
+    color: #051367;
+}
+
+/* Registration form CSS */
+.registerForm {
+    border: 1px solid black;
+    margin: 2% 25% 2%;
+    padding: 1% 2% 1%;
+    font-size: 23px;
+}
+
+/* common class padding */
+.restoRegistration .name,
+.restoRegistration .street,
+.restoRegistration .town,
+.restoRegistration .region,
+.restoRegistration .time,
+.restoRegistration .telephone,
+.restoRegistration .email,
+.restoRegistration .cuisineDetails {
+    padding: 1%;
+}
+
+/* label width */
+.restoRegistration .name label,
+.restoRegistration .street label,
+.restoRegistration .town label,
+.restoRegistration .region label,
+.restoRegistration .time label,
+.restoRegistration .telephone label,
+.restoRegistration .email label,
+.restoRegistration .cuisineDetails label {
+    display: inline-block;
+    width: 180px
+}
+
+/* input width */
+.restoRegistration .name input,
+.restoRegistration .street input,
+.restoRegistration .town input,
+.restoRegistration .region select,
+.restoRegistration .telephone input,
+.restoRegistration .email input {
+    width: 400px;
+    height: 25px;
+}
+
+/* time header class */
+.time .time_header,
+.time .monday,
+.time .tuesday,
+.time .wednesday,
+.time .thursday,
+.time .friday,
+.time .saturday,
+.time .sunday {
+    display: flex;
+    padding-bottom: 0.5%;
+}
+
+/* title and subtitle header */
+.time .time_header #title,
+.time .monday #subtitle,
+.time .tuesday #subtitle,
+.time .wednesday #subtitle,
+.time .thursday #subtitle,
+.time .friday #subtitle,
+.time .saturday #subtitle,
+.time .sunday #subtitle {
+    display: inline-block;
+    width: 180px
+}
+
+/* opening time header css */
+.time .time_header #opening_header,
+.time .monday .opening,
+.time .tuesday .opening,
+.time .wednesday .opening,
+.time .thursday .opening,
+.time .friday .opening,
+.time .saturday .opening,
+.time .sunday .opening  {
+    margin-left: 2%;
+    width: 100px;
+} 
+
+/* closing time CSS */
+.time .time_header #closing_header,
+.time .monday .closing,
+.time .tuesday .closing,
+.time .wednesday .closing,
+.time .thursday .closing,
+.time .friday .closing,
+.time .saturday .closing,
+.time .sunday .closing {
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.time input[type=time] {
+    height: 25px;
+    width: 100px;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+}
+
+.time input[type=checkbox] {
+    height: 20px;
+}
+
+.cuisineDetails * {
+    vertical-align: middle;
+}
+
+.registerBtn {
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.restoDetails {
+    margin: 2% 5% 2%;
+    text-align: center;
+}
+
+.eachResto {
+    display: flex;
+    border: 1px solid black;
+    padding: 1% 2% 1%;
+    text-align: center;
+}
+
+.eachResto #restoName,
+.eachResto #restoTel {
+    width: 100px;
+    display: inline-block;
+}
+
+.eachResto .fullAddress {
+    width: 150px;
+    display: inline-block;
+}
+
+.eachResto #restoEmail {
+    min-width: 200px;
+    width: auto;
+    display: inline-block;
+}
+
+.eachResto .restoTime {
+    min-width: 175px;
+    display: inline-block;
+}
+
+.eachResto #restoCuisineDetails {
+    min-width: 175px;
+    width: auto;
+    display: inline-block;
 }
