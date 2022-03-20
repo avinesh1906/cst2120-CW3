@@ -1,11 +1,23 @@
 // Entire script will be in script mode
 "use strict";
 
+import {emailValidation, passwordValidation, restoNameValidation, restoStreetValidation, restoTownValidation, restoTelValidation, restoEmailValidation} from './validation.js';
+import {registerResto, home, login} from './layout.js';
+
+// variables
+let loginBtn = document.getElementById("loginBUTTON");
+let registerBtn = document.getElementById("register");
+
 //Set up page when window has loaded
 window.onload = init;
 
+loginBtn.addEventListener('click', loginAdmin); 
+registerBtn.addEventListener('click', register); 
+document.querySelector('#searchRegion').addEventListener('click', searchRegion)
+
 //Get pointers to parts of the DOM after the page has loaded.
 function init(){
+    sessionStorage.setItem("logged", false);
     loadRegion();
 }
 
@@ -40,35 +52,42 @@ function loadRegion() {
 }
 
 /* function to login administrator*/
-function login() {
+function loginAdmin() {
     //Set up XMLHttpRequest
     let xhttp = new XMLHttpRequest();
 
     //Extract user data
     let usrEmail = document.getElementById("usr_email");
     let usrPwd = document.getElementById("password");
+    let usr_details = document.getElementById("usr_details");
+    let adminLogin = document.getElementById("adminLogin");
 
     let usrObj = {
         email: usrEmail.value,
         password: usrPwd.value
     };
-    
-    //Set up function that is called when reply received from server
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            if (this.responseText == "1") {
-                console.log("Validated");
-            } else {
-                console.log("Error");
-            }
-        }        
-    };
-        
-    //Request data from all users
-    xhttp.open("POST", "/validateUsr", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send( JSON.stringify(usrObj) );
-   
+    if (emailValidation() && passwordValidation()){
+        //Set up function that is called when reply received from server
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.responseText == "1") {
+                    sessionStorage.setItem("logged", true);
+                    adminLogin.innerHTML = "Log Out";
+                    home();
+                } else {
+                    usr_details.innerHTML = "Username/Password wrong";
+                    usr_details.style.color = "#DA1212";
+                }
+            }        
+        };
+            
+        //Request data from all users
+        xhttp.open("POST", "/validateUsr", true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send( JSON.stringify(usrObj) );
+    } else {
+        loginBtn.disabled = true;
+    }    
 }
 
 // function to register a restaurant
@@ -77,13 +96,13 @@ function register() {
     let xhttp = new XMLHttpRequest();
 
     // extract variables from registration form
-    let name = document.getElementById("name");
+    let name = document.getElementById("restoName");
     let street = document.getElementById("street");
     let town = document.getElementById("town");
     let selectRegion = document.querySelector('#registerRegion');
     let region = selectRegion.options[selectRegion.selectedIndex].value;
     let telephone = document.getElementById("telephone");
-    let email = document.getElementById("email");
+    let email = document.getElementById("restoEmail");
     let cuisineDetails = document.getElementById("cuisineDetails");
 
     let monday_opening = document.getElementById("monday_opening");
@@ -120,21 +139,27 @@ function register() {
         }
     }
 
-    //Set up function that is called when reply received from server
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            if (this.responseText == "1") {
-                console.log("Validated");
-            } else {
-                console.log("Error");
-            }
-        }        
-    };
-        
-    //Request data from all users
-    xhttp.open("POST", "/registerResto", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send( JSON.stringify(register_Obj) );
+    if (restoNameValidation() && restoStreetValidation() && restoTownValidation() && restoTelValidation() && restoEmailValidation()){
+        //Set up function that is called when reply received from server
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.responseText == "1") {
+                    console.log("Validated");
+                } else {
+                    console.log("Error");
+                }
+            }        
+        };
+            
+        //Request data from all users
+        xhttp.open("POST", "/registerResto", true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send( JSON.stringify(register_Obj) );
+    // disable button if not met condition
+    } else {
+        registerBtn.disabled = true;
+    }
+    
 }
 
 let timeFunc = function extractTime(regionID) {  
@@ -162,7 +187,7 @@ let timeFunc = function extractTime(regionID) {
 }
 
 
-async function searchRegion()
+function searchRegion()
 {
     let selectElement = document.querySelector('#search_bar');
     let regionID = selectElement.options[selectElement.selectedIndex].value;
@@ -217,7 +242,6 @@ async function searchRegion()
                     htmlStr += '          </div>';
                     htmlStr += '        </div>';
                 }
-                console.log(htmlStr);
                 accordion.innerHTML = htmlStr;
             });
         }        
@@ -229,3 +253,54 @@ async function searchRegion()
     xhttp.send();
 }
 
+function logged() {
+    //Set up XMLHttpRequest
+    let xhttp = new XMLHttpRequest();
+    //Set up function that is called when reply received from server
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            //Convert JSON to a JavaScript object
+            let loginVar = JSON.parse(this.responseText);
+            for(let key in loginVar){
+                if (!loginVar[key]) {
+                    login();
+                }else {
+                    logout();
+                }
+            }
+        }
+    };
+
+    //Request data from all users
+    xhttp.open("GET", "/checklogin", true);
+    xhttp.send();
+}
+
+function logout(){
+    //Set up XMLHttpRequest
+    let xhttp = new XMLHttpRequest();
+
+    let adminLogin = document.getElementById("adminLogin");
+
+    //Set up function that is called when reply received from server
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            //Convert JSON to a JavaScript object
+            let loginVar = JSON.parse(this.responseText);
+            for(let key in loginVar){
+                if (!loginVar[key]) {
+                    sessionStorage.setItem("logged", false);
+                    adminLogin.innerHTML = "Admin Login?";
+                    home();
+                } else {
+                    console.log("Error");
+                }
+            }
+        }
+    };
+    //Request data from all users
+    xhttp.open("GET", "/logout", true);
+    xhttp.send();
+}
+
+export {logged, logout};

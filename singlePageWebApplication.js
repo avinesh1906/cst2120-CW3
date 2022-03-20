@@ -1,6 +1,7 @@
-//Import the express and body-parser modules
+//Import the express, body-parser and expressSession modules
 const express = require('express');
 const bodyParser = require('body-parser');
+const expressSession = require('express-session');
 
 //Import the mysql module
 const mysql = require('mysql');
@@ -22,6 +23,16 @@ app.use(bodyParser.json());
 
 //Set up express to serve static files from the directory called 'restoFinderApp'
 app.use(express.static('restoFinderApp'));
+
+//Configure express to use express-session
+app.use(
+    expressSession({
+        secret: 'restoFinder.my secret',
+        cookie: { maxAge: 60000 },
+        resave: false,
+        saveUninitialized: true
+    })
+);
 
 //Data structure that will be accessed using the web service
 let regionArray = [];
@@ -147,6 +158,8 @@ getRegion().then ( result => {
 //Set up application to handle GET requests 
 app.get('/region', handleGetRegionRequest);//Returns all regions
 app.get('/region/:data', handleGetRegionRequest);//Returns specific region
+app.get('/checklogin', checklogin);//Checks to see if user is logged in.
+app.get('/logout', logout);//Logs user out
 
 //Set up application to handle POST requests
 app.post('/validateUsr', handlePostUsrRequest);//Validate user
@@ -209,6 +222,9 @@ function handlePostUsrRequest(request, response){
         getUsr(userObj['email']).then ( result => {
             //Append to region Array.
             if (userObj["password"] == result[0].password){
+                //Store details of logged in user
+                request.session.username = userObj['email'];
+                
                 response.send("1");
             } else {
                 response.send("0");
@@ -248,4 +264,25 @@ function handlePostRestoRequest(request, response){
     //The path is not recognized. Return an error message
     else
         response.send("{error: 'Path not recognized'}");
+}
+
+// GET /checklogin. Checks to see if the user has logged in
+function checklogin(request, response){
+    if(!("username" in request.session))
+        response.send('{"login": false}');
+    else{
+        response.send('{"login":true, "username": "' +
+            request.session.username + '" }');
+    }
+}
+
+// GET /logout. Logs the user out.
+function logout(request, response){
+    //Destroy session.
+    request.session.destroy( err => {
+        if(err)
+            response.send('{"error": '+ JSON.stringify(err) + '}');
+        else
+            response.send('{"login":false}');
+    });
 }

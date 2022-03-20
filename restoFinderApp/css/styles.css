@@ -3,7 +3,9 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto';
+    background-color: #D4ECDD;
 }
+
 /* top body CSS */
 .top {
     display: flex;
@@ -60,7 +62,7 @@ body {
 .top .left .description .dynamic {
     font-size: 30px;
     height: auto;
-    min-height: 35px;
+    min-height: 50px;
 }
 
 /* static text in top left description css */
@@ -88,30 +90,56 @@ body {
     width: 100px;
     height: 60px;
     font-size: 25px;
-    color: #FFFBE9;
-    background-color: #AD8B73;
-    border: solid 2px black;
+    color: #D4ECDD;
+    background-color: #112031;
+    border: solid 2px 345B63;
+}
+.top .left #search button:hover{
+    background-color: #345B63;
+    color: #D4ECDD;
 }
 
 /* link css */
-.link {
+.top .left .link {
     font-size: 20px;
     padding-left: 5%;
     padding-top: 15%;
     color: #051367;
+    display: flex;
+}
+.top .left .link .loginLink {
+    margin-left: 5%;
+}
+
+.top .left .link span:hover {
+    text-decoration: underline;
+    color:#AD8B73
 }
 
 /* login admin CSS */
 .loginAdmin {
     padding-top: 1%;
     font-size: 30px;
+    display: none;
+}
+
+/* home link */
+.loginAdmin .header #link,
+.restoRegistration .header #link {
+    margin: 2%;
+}
+.loginAdmin .header #link:hover,
+.restoRegistration .header #link:hover {
+    text-decoration: underline;
+    color: #152D35;
 }
 
 /* login admin header title css */
-.loginAdmin .header #title {
+.loginAdmin .header #title,
+.restoRegistration .header #title {
     text-align: center;
     font-size: 45px;
-    color: #AD8B73;
+    color: #152D35;
 }
 
 /* login form css */
@@ -119,7 +147,9 @@ body {
     text-align: left;
     border: 1px solid black;
     margin: 1% 25% 2%;
-    padding: 1% 1% 1%;
+    padding: 1% 2.5% 1%;
+    background-color: #345B63;
+    color: #D4ECDD;
 }
 
 /* login form label css */
@@ -130,7 +160,7 @@ body {
 
 /* login form input css */
 .loginForm input {
-    width: 500px;
+    width: 650px;
     height: 35px;
     font-size: 25px;
     margin: 2% 0% 2%;
@@ -143,33 +173,36 @@ body {
 }
 
 /* login button for login form css */
-.loginForm .login_btn button,
-.restoRegistration .registerBtn button {
+.loginForm .login_btn button{
     width: 200px;
     font-size: 22px;
     margin: 1% 2%;
+    color: #112031;
+    background-color: #D4ECDD;
+}
+.loginForm .login_btn button:hover{
+    color:#D4ECDD;
+    background-color: #112031;
 }
 
 /* Register a restaurant CSS */
-/* header title CSS */
-.restoRegistration .header #title {
-    text-align: center;
-    color: #AD8B73;
-    font-size: 45px;
+.restoRegistration {
+    display: none;
 }
 
 /* header link CSS */
 .restoRegistration .header #link {
     font-size: 30px;
-    color: #051367;
 }
 
 /* Registration form CSS */
 .registerForm {
-    border: 1px solid black;
+    border: 3px solid #112031;
     margin: 2% 25% 2%;
     padding: 1% 2% 1%;
     font-size: 23px;
+    background-color: #345B63;
+    color: #D4ECDD;
 }
 
 /* common class padding */
@@ -204,8 +237,8 @@ body {
 .restoRegistration .region select,
 .restoRegistration .telephone input,
 .restoRegistration .email input {
-    width: 400px;
-    height: 25px;
+    width: 85%;
+    height: 10%;
 }
 
 /* time header class */
@@ -272,14 +305,28 @@ body {
     height: 20px;
 }
 
-.cuisineDetails * {
+.restoRegistration .cuisineDetails * {
     vertical-align: middle;
 }
 
-.registerBtn {
+.restoRegistration .registerBtn {
     text-align: center;
     margin-bottom: 2%;
 }
+
+.restoRegistration .registerBtn button {
+    width: 200px;
+    font-size: 22px;
+    margin: 1% 2%;
+    color: #D4ECDD;
+    background-color: #345B63;
+}
+
+.restoRegistration .registerBtn button:hover{
+    color:#D4ECDD;
+    background-color: #112031;
+}
+
 
 .restoDetails {
     margin: 2% 5% 2%;
