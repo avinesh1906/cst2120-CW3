@@ -11,7 +11,6 @@ let street = document.getElementById("street");
 let town = document.getElementById("town");
 let telephone = document.getElementById("telephone");
 let restoEmail = document.getElementById("restoEmail");
-let fileArray = document.getElementById("restoMenu").files;
 
 // event listener
 email.addEventListener('keyup', emailValidation);
@@ -157,6 +156,7 @@ function restoEmailValidation(){
 
 function fileValidation(){
     let details = document.getElementById("fileUpload_details");
+    let fileArray = document.getElementById("restoMenu").files;
 
     if(fileArray.length !== 1){
         registerBtn.disabled = true;

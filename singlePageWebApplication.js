@@ -132,11 +132,13 @@ async function postResto(register_Obj, myFile){
                 reject("Error executing query: " + JSON.stringify(err));
             }
             else{//Resolve promise with results
+                let timeObj = JSON.parse(register_Obj.time);
+
                 //Build query to insert into business_hours
-                for (var key in register_Obj.time) {
+                for (var key in timeObj) {
                     let time_sql = "INSERT INTO business_hours"  +
                     "(restaurant_id, day, opening_time, closing_time) VALUES" +
-                    "('"+ result.insertId +"', '"+ key+"', '"+ register_Obj.time[key][0] +"', '"+ register_Obj.time[key][1] +"')";
+                    "('"+ result.insertId +"', '"+ key+"', '"+ timeObj[key][0] +"', '"+ timeObj[key][1] +"')";
                     //Execute query and output results
                     connectionPool.query(time_sql, (err, time_result) => {
                         if (err){//Check for errors
@@ -269,7 +271,7 @@ function handlePostRestoRequest(request, response){
 
         // retrieve the user object
         let register_Obj = request.body;
-        
+
         //Execute promise
         postResto(register_Obj, myFile).then ( result => {
             //Append to region Array.

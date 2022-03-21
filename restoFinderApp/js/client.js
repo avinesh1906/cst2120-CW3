@@ -144,7 +144,12 @@ function register() {
         }
     }
     for (var key in register_Obj) {
-        formData.append(key, register_Obj[key]);
+        if (key == "time"){
+            formData.append(key, JSON.stringify(register_Obj[key]));
+        } else {
+            formData.append(key, register_Obj[key]);
+        }
+        
     }
 
     if (restoNameValidation() && restoStreetValidation() && restoTownValidation() && restoTelValidation() && restoEmailValidation() && fileValidation()){
@@ -152,7 +157,7 @@ function register() {
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 if (this.responseText == "1") {
-                    console.log("Validated");
+                    home();
                 } else {
                     console.log("Error");
                 }
