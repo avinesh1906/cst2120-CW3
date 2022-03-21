@@ -13,14 +13,14 @@ let loginAdminClass = document.getElementsByClassName("loginAdmin")[0];
 let restoRegistrationClass = document.getElementsByClassName("restoRegistration")[0];
 
 function registerResto(){
-    // let loggedUsr = sessionStorage.getItem("logged");
-    // if (loggedUsr == "false") {
-    //     login();
-    // } else {
+    let loggedUsr = sessionStorage.getItem("logged");
+    if (loggedUsr == "false") {
+        login();
+    } else {
         topClass.style.display = "none";
         restoRegistrationClass.style.display = "block";
         loginAdminClass.style.display = "none";
-    // }
+    }
 }
 
 function home() {

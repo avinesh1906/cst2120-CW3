@@ -1,7 +1,7 @@
 // Entire script will be in script mode
 "use strict";
 
-import {emailValidation, passwordValidation, restoNameValidation, restoStreetValidation, restoTownValidation, restoTelValidation, restoEmailValidation} from './validation.js';
+import {emailValidation, passwordValidation, restoNameValidation, restoStreetValidation, restoTownValidation, restoTelValidation, restoEmailValidation, fileValidation} from './validation.js';
 import {registerResto, home, login} from './layout.js';
 
 // variables
@@ -147,8 +147,8 @@ function register() {
         formData.append(key, register_Obj[key]);
     }
 
-    // if (restoNameValidation() && restoStreetValidation() && restoTownValidation() && restoTelValidation() && restoEmailValidation()){
-        //Set up function that is called when reply received from server
+    if (restoNameValidation() && restoStreetValidation() && restoTownValidation() && restoTelValidation() && restoEmailValidation() && fileValidation()){
+        // Set up function that is called when reply received from server
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 if (this.responseText == "1") {
@@ -163,9 +163,9 @@ function register() {
         xhttp.open("POST", "/registerResto", true);
         xhttp.send(formData );
     // disable button if not met condition
-    // } else {
-    //     registerBtn.disabled = true;
-    // }
+    } else {
+        registerBtn.disabled = true;
+    }
     
 }
 

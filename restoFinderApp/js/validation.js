@@ -11,6 +11,7 @@ let street = document.getElementById("street");
 let town = document.getElementById("town");
 let telephone = document.getElementById("telephone");
 let restoEmail = document.getElementById("restoEmail");
+let fileArray = document.getElementById("restoMenu").files;
 
 // event listener
 email.addEventListener('keyup', emailValidation);
@@ -154,5 +155,19 @@ function restoEmailValidation(){
     return true;
 }
 
+function fileValidation(){
+    let details = document.getElementById("fileUpload_details");
+
+    if(fileArray.length !== 1){
+        registerBtn.disabled = true;
+        details.innerHTML = "Please select file to upload";
+        details.style.color = "#ED3833";
+        return false;
+    }
+    registerBtn.disabled = false;
+    details.innerHTML = "";
+    return true;
+}
+
 // Exporting functions
-export {emailValidation, passwordValidation, restoNameValidation, restoStreetValidation, restoTownValidation, restoTelValidation, restoEmailValidation}
+export {emailValidation, passwordValidation, restoNameValidation, restoStreetValidation, restoTownValidation, restoTelValidation, restoEmailValidation, fileValidation}
