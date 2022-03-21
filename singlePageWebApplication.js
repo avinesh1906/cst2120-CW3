@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
+const fileUpload = require('express-fileupload');
 
 //Import the mysql module
 const mysql = require('mysql');
@@ -20,6 +21,9 @@ const connectionPool = mysql.createPool({
 //Create express app and configure it with body-parser
 const app = express();
 app.use(bodyParser.json());
+
+//Configure Express to use the file upload module
+app.use(fileUpload());
 
 //Set up express to serve static files from the directory called 'restoFinderApp'
 app.use(express.static('restoFinderApp'));
@@ -116,7 +120,7 @@ async function getUsr(userEmail){
   }
   
 /* Returns a promise to get specific user. */
-async function postResto(register_Obj){
+async function postResto(register_Obj, myFile){
     //Build query to insert into restaurant
     let restoSql = "INSERT INTO restaurant (name, street, city, region, phone, email, cuisine_details) VALUES" +
                 "('"+ register_Obj['name']+"','"+ register_Obj['street'] +"','"+ register_Obj['town'] +"'," +
@@ -140,6 +144,19 @@ async function postResto(register_Obj){
                         }
                     });
                 }
+                myFile.mv('./restoFinderApp/uploads/' + result.insertId + "_" + myFile.name, function(err) {
+                    if (err)
+                        return response.status(500).send('{"filename": "' +
+                            myFile.name + '", "upload": false, "error": "' +
+                            JSON.stringify(err) + '"}');
+                });
+                let fileSQL = "UPDATE restaurant SET fileName = '"+ result.insertId + "_" + myFile.name +"' WHERE id =" + result.insertId;
+
+                connectionPool.query(fileSQL, (fileErr, FileResult) => {
+                    if (fileErr){//Check for errors
+                        reject("Error executing query: " + JSON.stringify(fileErr));
+                    }
+                });            
                 resolve(result);
             }
         });
@@ -248,11 +265,13 @@ function handlePostRestoRequest(request, response){
     var pathEnd = pathArray[pathArray.length - 1];
 
     if (pathEnd === 'registerResto'){
+        let myFile = request.files.myFile;
+
         // retrieve the user object
         let register_Obj = request.body;
-
+        
         //Execute promise
-        postResto(register_Obj).then ( result => {
+        postResto(register_Obj, myFile).then ( result => {
             //Append to region Array.
             response.send("1");
         }).catch( err => {//Handle the error

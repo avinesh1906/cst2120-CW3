@@ -104,6 +104,7 @@ function register() {
     let telephone = document.getElementById("telephone");
     let email = document.getElementById("restoEmail");
     let cuisineDetails = document.getElementById("cuisineDetails");
+    let fileArray = document.getElementById("restoMenu").files;
 
     let monday_opening = document.getElementById("monday_opening");
     let monday_closing = document.getElementById("monday_closing");
@@ -119,6 +120,10 @@ function register() {
     let saturday_closing = document.getElementById("saturday_closing");
     let sunday_opening = document.getElementById("sunday_opening");
     let sunday_closing = document.getElementById("sunday_closing");
+
+    //Put file inside FormData object
+    const formData = new FormData();
+    formData.append('myFile', fileArray[0]);
 
     let register_Obj = {
         name: name.value,
@@ -138,8 +143,11 @@ function register() {
             sunday: [sunday_opening.value, sunday_closing.value],
         }
     }
+    for (var key in register_Obj) {
+        formData.append(key, register_Obj[key]);
+    }
 
-    if (restoNameValidation() && restoStreetValidation() && restoTownValidation() && restoTelValidation() && restoEmailValidation()){
+    // if (restoNameValidation() && restoStreetValidation() && restoTownValidation() && restoTelValidation() && restoEmailValidation()){
         //Set up function that is called when reply received from server
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -153,12 +161,11 @@ function register() {
             
         //Request data from all users
         xhttp.open("POST", "/registerResto", true);
-        xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send( JSON.stringify(register_Obj) );
+        xhttp.send(formData );
     // disable button if not met condition
-    } else {
-        registerBtn.disabled = true;
-    }
+    // } else {
+    //     registerBtn.disabled = true;
+    // }
     
 }
 
