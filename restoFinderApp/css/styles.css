@@ -241,6 +241,13 @@ body {
     height: 10%;
 }
 
+.restoRegistration .restoMenu input[type=file]
+{
+    margin-left: 5%;
+    font-size: 15px;
+    height: 55px;
+}
+
 /* time header class */
 .time .time_header,
 .time .monday,
