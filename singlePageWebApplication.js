@@ -63,7 +63,7 @@ async function getRegion(){
 async function getSpecificRegion(regionID){
     //Build query
     let sql = "SELECT restaurant.id, restaurant.name, restaurant.street, restaurant.city," + 
-    "restaurant.phone, restaurant.email, restaurant.cuisine_details, region.name AS region_name " +
+    "restaurant.phone, restaurant.email, restaurant.cuisine_details, restaurant.fileName, region.name AS region_name " +
     "FROM restaurant INNER JOIN region " +
     "ON restaurant.region = region.id " +
     "WHERE restaurant.region =" + regionID;
@@ -165,6 +165,43 @@ async function postResto(register_Obj, myFile){
     });
   }
 
+
+/* Returns a promise to add reviews. */
+async function addReview(reviewObj){
+    //Build query
+    let sql = "INSERT INTO review (restaurant_id, name, email, title, body, date) " +
+    "VALUES ('"+ reviewObj['id'] +"','"+ reviewObj['name'] +"','"+ reviewObj['email'] +"','"+ reviewObj['title'] +"','"+ reviewObj['body'] +"','"+ reviewObj['date']+"');";
+    console.log(sql);
+  
+    //Wrap the execution of the query in a promise
+    return new Promise ( (resolve, reject) => { 
+        connectionPool.query(sql, (err, result) => {
+            if (err){//Check for errors
+                reject("Error executing query: " + JSON.stringify(err));
+            }
+            else{//Resolve promise with results
+                resolve(result);
+            }
+        });
+    });
+  }
+/* Returns a promise to get reviews. */
+async function getReview(restoID){
+    //Build query
+    let sql = "SELECT * FROM review";
+  
+    //Wrap the execution of the query in a promise
+    return new Promise ( (resolve, reject) => { 
+        connectionPool.query(sql, (err, result) => {
+            if (err){//Check for errors
+                reject("Error executing query: " + JSON.stringify(err));
+            }
+            else{//Resolve promise with results
+                resolve(result);
+            }
+        });
+    });
+  }
 //Execute promise
 getRegion().then ( result => {
   //Append to region Array.
@@ -179,10 +216,12 @@ app.get('/region', handleGetRegionRequest);//Returns all regions
 app.get('/region/:data', handleGetRegionRequest);//Returns specific region
 app.get('/checklogin', checklogin);//Checks to see if user is logged in.
 app.get('/logout', logout);//Logs user out
+app.get('/getReview', handleGetReviewRequest);//Logs user out
 
 //Set up application to handle POST requests
 app.post('/validateUsr', handlePostUsrRequest);//Validate user
 app.post('/registerResto', handlePostRestoRequest);//Register restaurant
+app.post('/postReview', handlePostReviewRequest);//Register reviews
 
 //Start the app listening on port 8080
 app.listen(8080);
@@ -306,4 +345,49 @@ function logout(request, response){
         else
             response.send('{"login":false}');
     });
+}
+
+function handlePostReviewRequest(request, response){
+    //Split the path of the request into its components
+    var pathArray = request.url.split("/");
+
+    //Get the last part of the path
+    var pathEnd = pathArray[pathArray.length - 1];
+
+    // retrieve the user object
+    let review_Obj = request.body;
+
+    if (pathEnd === 'postReview'){
+        //Execute promise
+        addReview(review_Obj).then ( result => {
+            response.send("1");
+        }).catch( err => {//Handle the error
+            response.send("0");
+        });
+    }
+    //The path is not recognized. Return an error message
+    else
+        response.send("{error: 'Path not recognized'}");
+}
+
+function handleGetReviewRequest(request, response) {
+    //Split the path of the request into its components
+    var pathArray = request.url.split("/");
+
+    //Get the last part of the path
+    var pathEnd = pathArray[pathArray.length - 1];
+    
+    if (pathEnd === 'getReview'){
+        //Execute promise
+        getReview().then ( timeResult => {
+            //return result.
+            response.send(JSON.stringify(timeResult));
+        }).catch( err => {//Handle the error
+            console.error(JSON.stringify(err));
+            response.send("0");
+        });
+    }
+    //The path is not recognized. Return an error message
+    else
+        response.send("{error: 'Path not recognized'}");
 }

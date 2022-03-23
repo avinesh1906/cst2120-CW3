@@ -334,43 +334,170 @@ body {
     background-color: #112031;
 }
 
-
-.restoDetails {
+.accordion {
+    display: none;
     margin: 2% 5% 2%;
-    text-align: center;
-}
-
-.eachResto {
-    display: flex;
     border: 1px solid black;
-    padding: 1% 2% 1%;
-    text-align: center;
+    padding: 2% 10% 2%;
+    align-content: center;
+    align-items: center;
+    background-color: #345B63;   
+}
+.accordion .accordion-item{
+    background-color: #152D35;
+    color: #D4ECDD;
 }
 
-.eachResto #restoName,
-.eachResto #restoTel {
-    width: 100px;
-    display: inline-block;
+.accordion .accordion-item .accordion-header #restoName,
+.accordion .accordion-item .accordion-header #restoTel,
+.accordion .accordion-item .accordion-header #restoCuisineDetails
+{
+    width: 15%;
+    font-size: 20px;
 }
 
-.eachResto .fullAddress {
-    width: 150px;
-    display: inline-block;
+.accordion .accordion-item .accordion-header .fullAddress,
+.accordion .accordion-item .accordion-header #restoEmail{
+    width: 20%;
+    font-size: 20px;
 }
 
-.eachResto #restoEmail {
-    min-width: 200px;
-    width: auto;
-    display: inline-block;
+.accordion .accordion-item .accordion-body .flexTop{
+    display: flex;
+    width: 100%;
 }
 
-.eachResto .restoTime {
-    min-width: 175px;
-    display: inline-block;
+.accordion .accordion-item .accordion-body .flexTop .restoTime,
+.accordion .accordion-item .accordion-body .flexTop .menu{
+    width: 50%;
 }
 
-.eachResto #restoCuisineDetails {
-    min-width: 175px;
-    width: auto;
-    display: inline-block;
+.accordion .accordion-item .accordion-body .flexTop .menu {
+    text-align: right;
+}
+
+.accordion .accordion-item .accordion-body .flexTop .menu a {
+    text-decoration: none;
+    color: #D4ECDD;
+    font-size: 20px;
+}
+
+.accordion .accordion-item .accordion-body .flexTop .menu a:hover{
+    text-decoration: underline;
+    color: #F4FCD9;
+}
+
+.accordion .accordion-item .accordion-body .flexTop .restoTime button{
+    color: #152D35;
+    background-color: #D4ECDD;
+}
+
+.accordion .accordion-item .accordion-body .flexTop .restoTime button:hover{
+    color: #112031;
+    background-color: #F4FCD9;
+}
+
+.reviews{
+    padding-top: 1%;
+}
+/* product review title css */
+.reviews .title{
+    display: flex;
+    color: #FBF7F0;
+    font-size: 18px;
+}
+
+/* add revirew css */
+.reviews .title #addReview{
+    text-align: right;
+    color: #D9E4DD
+}
+
+/* add review hover css */
+.reviews .title #addReview:hover,
+.reviews .title #customerReview:hover{
+    color: #79B4B7;
+}
+
+/* product review link css */
+.reviews #customerReview,
+.reviews #addReview {
+    width: 50%;
+    font-size: 25px;
+}
+
+.reviews .reviewBody{
+    margin: 1% 1% 1%;
+    padding: 0.5% 1%;
+    font-size: 20px;
+}
+
+/* review body + review list title css */
+.reviews .reviewBody .reviewListTitle{
+    font-size: x-large;
+}
+
+/* review list details css */
+.reviews .reviewBody .reviewListDetails{
+    font-size: 18px;
+    display: flex;
+}
+
+/* date of review */
+.reviews .reviewBody .reviewListDetails #date{
+    color: #316B83;
+    padding-left: 0.5%;
+}
+
+/* review list description css */
+.reviews .reviewBody .reviewListDesc{
+    font-size: 20px;
+}
+
+/* common css */
+.reviews .reviewBody .reviewQty .reviewList,
+.reviews .writeReview{
+    border: 2px solid #CDC9C3;
+    background-color: #D9E4DD;
+    color: #152D35;
+    padding: 1%;
+    margin-bottom: 1%;
+}
+
+/* write review css */
+.reviews .writeReview{
+    display: none;
+}
+
+/* writereview title css */
+.reviews .writeReview .reviewTitle{
+    font-size: 25px;
+    color: #112031;
+}
+
+/* form details css */
+.reviews .writeReview .form_details {
+    margin-bottom: 1%;
+}
+
+/* write review input css */
+.reviews .writeReview input{
+    width: 50%;
+}
+
+/* writereview body css */
+.reviews .writeReview input#writereviewBody{
+    height: 50px;
+}
+
+/* submit review btn css */
+.reviews .writeReview .submitReviewBtn{
+    margin-top: 1%;
+    text-align: right;
+}
+
+/* submit review btn hover */
+.reviews .writeReview .submitReviewBtn button:hover{
+    color: #555555;
+    background-color: #F8F0DF;
 }
