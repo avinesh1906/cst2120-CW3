@@ -5,7 +5,7 @@ import {logout, searchRegion} from './client.js';
 
 document.querySelector('.top').querySelector('.link').querySelector('#registerResto').addEventListener('click', registerResto)
 document.querySelector('.loginAdmin').querySelector('.header').querySelector('#link').addEventListener('click', home)
-document.querySelector('.restoRegistration').querySelector('.header').querySelector('#link').addEventListener('click', home)
+document.querySelector('.restoRegistration').querySelector('.header').querySelector('.link').addEventListener('click', home)
 document.querySelector('.top').querySelector('.link').querySelector('#adminLogin').addEventListener('click', login)
 
 document.addEventListener('click',function(e){

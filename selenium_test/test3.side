@@ -1,0 +1,202 @@
+{
+  "id": "b2abe615-6b63-4624-a7b4-2e60fa2c04a0",
+  "version": "2.0",
+  "name": "cw3",
+  "url": "http://127.0.0.1:8080",
+  "tests": [{
+    "id": "115c8a99-f6e3-411e-828d-2687dba2d77e",
+    "name": "test1",
+    "commands": [{
+      "id": "11eddbb3-b1aa-4291-86d1-460a4627a6ce",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "882bf200-20b0-4e99-b7e8-abc83fc16ba5",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x832",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "986e26db-6492-49fe-b099-ccd12e416d64",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,19.200000762939453)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e4635ac7-62a8-492f-b39d-226cf9df5fae",
+      "comment": "",
+      "command": "click",
+      "target": "id=search_bar",
+      "targets": [
+        ["id=search_bar", "id"],
+        ["css=#search_bar", "css:finder"],
+        ["xpath=//select[@id='search_bar']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "277fbcec-eb6c-443d-aee9-8c40fdbaee52",
+      "comment": "",
+      "command": "select",
+      "target": "id=search_bar",
+      "targets": [],
+      "value": "label=North"
+    }, {
+      "id": "ee2e81b7-82bb-4e58-b724-7198b0829cd3",
+      "comment": "",
+      "command": "click",
+      "target": "id=searchRegion",
+      "targets": [
+        ["id=searchRegion", "id"],
+        ["css=#searchRegion", "css:finder"],
+        ["xpath=//button[@id='searchRegion']", "xpath:attributes"],
+        ["xpath=//div[@id='search']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2170af37-0a3a-436f-a1b4-61381f8e9c96",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,73.5999984741211)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "316aff5d-272a-49de-860d-afbad83ef20b",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.accordion-button",
+      "targets": [
+        ["css=.accordion-button", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='39']/h2/button", "xpath:idRelative"],
+        ["xpath=//h2/button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "204959a7-6709-4917-820d-bf3e3746849f",
+    "name": "test2",
+    "commands": [{
+      "id": "0f380654-2a52-4820-b07d-213dc7bb6e2d",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fdc76ee5-ec9b-4084-83c2-150f010d3ed4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x832",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "44a80886-03df-490d-bc06-dba6938d9b51",
+      "comment": "",
+      "command": "click",
+      "target": "id=adminLogin",
+      "targets": [
+        ["id=adminLogin", "id"],
+        ["css=#adminLogin", "css:finder"],
+        ["xpath=//span[@id='adminLogin']", "xpath:attributes"],
+        ["xpath=//div[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Admin Login?')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "04e984ad-eda1-433e-bb98-d181df1d3ee4",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.loginForm",
+      "targets": [
+        ["css=.loginForm", "css:finder"],
+        ["xpath=//body/div[4]/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "aceb3f5c-6d94-447a-adf4-37b519c319ba",
+    "name": "test3",
+    "commands": [{
+      "id": "1a6a1b86-cb2a-4640-862b-00629cf28830",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "59379a2d-cc6c-45f7-92be-9acbe5d6c6ba",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x832",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bf5bb099-91ef-4c31-bd00-8352dbbfdeb3",
+      "comment": "",
+      "command": "click",
+      "target": "id=adminLogin",
+      "targets": [
+        ["id=adminLogin", "id"],
+        ["css=#adminLogin", "css:finder"],
+        ["xpath=//span[@id='adminLogin']", "xpath:attributes"],
+        ["xpath=//div[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Admin Login?')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d4bfd199-e7a0-4367-a0d2-35c154a1fe5e",
+      "comment": "",
+      "command": "click",
+      "target": "id=loginBUTTON",
+      "targets": [
+        ["id=loginBUTTON", "id"],
+        ["css=#loginBUTTON", "css:finder"],
+        ["xpath=//button[@id='loginBUTTON']", "xpath:attributes"],
+        ["xpath=//div[3]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Sign In')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4d1f45bf-2e05-4d25-84ad-d09aeb5fa024",
+      "comment": "",
+      "command": "click",
+      "target": "id=registerResto",
+      "targets": [
+        ["id=registerResto", "id"],
+        ["css=#registerResto", "css:finder"],
+        ["xpath=//span[@id='registerResto']", "xpath:attributes"],
+        ["xpath=//div[4]/div/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Register Restaurant?')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b5e1acf2-450f-4d9f-a1e4-e5ea7cdce0f5",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.registerForm",
+      "targets": [
+        ["css=.registerForm", "css:finder"],
+        ["xpath=//div[5]/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "2394086a-eb9e-4148-ab54-e2d8ae13b031",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://127.0.0.1:8080/"],
+  "plugins": []
+}

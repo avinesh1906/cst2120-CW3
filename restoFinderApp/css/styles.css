@@ -75,6 +75,7 @@ body {
 .top .left .choice {
     margin-top: 5%;
     margin-left: 3%;
+    display: flex;
 }
 
 /* search bar for top left choice css */
@@ -92,8 +93,9 @@ body {
     font-size: 25px;
     color: #D4ECDD;
     background-color: #112031;
-    border: solid 2px 345B63;
+    border: solid 2px #345B63;
 }
+
 .top .left #search button:hover{
     background-color: #345B63;
     color: #D4ECDD;
@@ -125,18 +127,18 @@ body {
 
 /* home link */
 .loginAdmin .header #link,
-.restoRegistration .header #link {
+.restoRegistration .header .link {
     margin: 2%;
 }
 .loginAdmin .header #link:hover,
-.restoRegistration .header #link:hover {
+.restoRegistration .header .link:hover {
     text-decoration: underline;
     color: #152D35;
 }
 
 /* login admin header title css */
 .loginAdmin .header #title,
-.restoRegistration .header #title {
+.restoRegistration .header .title {
     text-align: center;
     font-size: 45px;
     color: #152D35;
@@ -191,7 +193,7 @@ body {
 }
 
 /* header link CSS */
-.restoRegistration .header #link {
+.restoRegistration .header .link {
     font-size: 30px;
 }
 
@@ -241,6 +243,7 @@ body {
     height: 10%;
 }
 
+/* input file CSS */
 .restoRegistration .restoMenu input[type=file]
 {
     margin-left: 5%;
@@ -262,14 +265,14 @@ body {
 }
 
 /* title and subtitle header */
-.time .time_header #title,
-.time .monday #subtitle,
-.time .tuesday #subtitle,
-.time .wednesday #subtitle,
-.time .thursday #subtitle,
-.time .friday #subtitle,
-.time .saturday #subtitle,
-.time .sunday #subtitle {
+.time .time_header #timeTitle,
+.time .monday .subtitle,
+.time .tuesday .subtitle,
+.time .wednesday .subtitle,
+.time .thursday .subtitle,
+.time .friday .subtitle,
+.time .saturday .subtitle,
+.time .sunday .subtitle {
     display: inline-block;
     width: 180px
 }
@@ -300,6 +303,7 @@ body {
     margin-right: 1%;
 }
 
+/* input time CSS */
 .time input[type=time] {
     height: 25px;
     width: 100px;
@@ -308,19 +312,23 @@ body {
     font-size: 20px;
 }
 
+/* input checkbox css */
 .time input[type=checkbox] {
     height: 20px;
 }
 
+/* Cuisine details CSS */
 .restoRegistration .cuisineDetails * {
     vertical-align: middle;
 }
 
+/* register button Class */
 .restoRegistration .registerBtn {
     text-align: center;
     margin-bottom: 2%;
 }
 
+/* register button CSS */
 .restoRegistration .registerBtn button {
     width: 200px;
     font-size: 22px;
@@ -329,11 +337,13 @@ body {
     background-color: #345B63;
 }
 
+/* register button hover CSS */
 .restoRegistration .registerBtn button:hover{
     color:#D4ECDD;
     background-color: #112031;
 }
 
+/* accordion CSS */
 .accordion {
     display: none;
     margin: 2% 5% 2%;
@@ -343,11 +353,14 @@ body {
     align-items: center;
     background-color: #345B63;   
 }
+
+/* accordion item CSS */
 .accordion .accordion-item{
     background-color: #152D35;
     color: #D4ECDD;
 }
 
+/* header label CSS */
 .accordion .accordion-item .accordion-header #restoName,
 .accordion .accordion-item .accordion-header #restoTel,
 .accordion .accordion-item .accordion-header #restoCuisineDetails
@@ -355,48 +368,55 @@ body {
     width: 15%;
     font-size: 20px;
 }
-
 .accordion .accordion-item .accordion-header .fullAddress,
 .accordion .accordion-item .accordion-header #restoEmail{
     width: 20%;
     font-size: 20px;
 }
 
+/* flexTop CSS */
 .accordion .accordion-item .accordion-body .flexTop{
     display: flex;
     width: 100%;
 }
 
+/* restoTime and menu CSS */
 .accordion .accordion-item .accordion-body .flexTop .restoTime,
 .accordion .accordion-item .accordion-body .flexTop .menu{
     width: 50%;
 }
 
+/* left align menu */
 .accordion .accordion-item .accordion-body .flexTop .menu {
     text-align: right;
 }
 
+/* text in menu class CSS */
 .accordion .accordion-item .accordion-body .flexTop .menu a {
     text-decoration: none;
     color: #D4ECDD;
     font-size: 20px;
 }
 
+/* link hover CSS */
 .accordion .accordion-item .accordion-body .flexTop .menu a:hover{
     text-decoration: underline;
     color: #F4FCD9;
 }
 
+/* restoTime button CSS */
 .accordion .accordion-item .accordion-body .flexTop .restoTime button{
     color: #152D35;
     background-color: #D4ECDD;
 }
 
+/* button hover css */
 .accordion .accordion-item .accordion-body .flexTop .restoTime button:hover{
     color: #112031;
     background-color: #F4FCD9;
 }
 
+/* reviews CSS */
 .reviews{
     padding-top: 1%;
 }

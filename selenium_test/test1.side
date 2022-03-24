@@ -1,0 +1,94 @@
+{
+  "id": "b2abe615-6b63-4624-a7b4-2e60fa2c04a0",
+  "version": "2.0",
+  "name": "cw3",
+  "url": "http://127.0.0.1:8080",
+  "tests": [{
+    "id": "115c8a99-f6e3-411e-828d-2687dba2d77e",
+    "name": "test1",
+    "commands": [{
+      "id": "11eddbb3-b1aa-4291-86d1-460a4627a6ce",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "882bf200-20b0-4e99-b7e8-abc83fc16ba5",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x832",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "986e26db-6492-49fe-b099-ccd12e416d64",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,19.200000762939453)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e4635ac7-62a8-492f-b39d-226cf9df5fae",
+      "comment": "",
+      "command": "click",
+      "target": "id=search_bar",
+      "targets": [
+        ["id=search_bar", "id"],
+        ["css=#search_bar", "css:finder"],
+        ["xpath=//select[@id='search_bar']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "277fbcec-eb6c-443d-aee9-8c40fdbaee52",
+      "comment": "",
+      "command": "select",
+      "target": "id=search_bar",
+      "targets": [],
+      "value": "label=North"
+    }, {
+      "id": "ee2e81b7-82bb-4e58-b724-7198b0829cd3",
+      "comment": "",
+      "command": "click",
+      "target": "id=searchRegion",
+      "targets": [
+        ["id=searchRegion", "id"],
+        ["css=#searchRegion", "css:finder"],
+        ["xpath=//button[@id='searchRegion']", "xpath:attributes"],
+        ["xpath=//div[@id='search']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2170af37-0a3a-436f-a1b4-61381f8e9c96",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,73.5999984741211)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "316aff5d-272a-49de-860d-afbad83ef20b",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.accordion-button",
+      "targets": [
+        ["css=.accordion-button", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='39']/h2/button", "xpath:idRelative"],
+        ["xpath=//h2/button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "2394086a-eb9e-4148-ab54-e2d8ae13b031",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://127.0.0.1:8080/"],
+  "plugins": []
+}

@@ -13,7 +13,7 @@ const connectionPool = mysql.createPool({
     connectionLimit: 1,
     host: "localhost",
     user: "avinesh",
-    password: "Cm3tc7At",
+    password: "123456789",
     database: "restofinder",
     debug: false
 });
@@ -38,6 +38,21 @@ app.use(
     })
 );
 
+//Set up application to handle GET requests 
+app.get('/region', handleGetRegionRequest);//Returns all regions
+app.get('/region/:data', handleGetRegionRequest);//Returns specific region
+app.get('/checklogin', checklogin);//Checks to see if user is logged in.
+app.get('/logout', logout);//Logs user out
+app.get('/getReview', handleGetReviewRequest);//Logs user out
+
+//Set up application to handle POST requests
+app.post('/validateUsr', handlePostUsrRequest);//Validate user
+app.post('/registerResto', handlePostRestoRequest);//Register restaurant
+app.post('/postReview', handlePostReviewRequest);//Register reviews
+
+//Start the app listening on port 8080
+app.listen(8080);
+
 //Data structure that will be accessed using the web service
 let regionArray = [];
 
@@ -58,6 +73,17 @@ async function getRegion(){
       });
   });
 }
+
+//Execute promise
+getRegion().then ( result => {
+    //Append to region Array.
+    regionArray = JSON.stringify(result);
+  
+  }).catch( err => {//Handle the error
+    console.error(JSON.stringify(err));
+  });
+
+  
 
 /* Returns a promise to get specific regions. */
 async function getSpecificRegion(regionID){
@@ -136,6 +162,7 @@ async function postResto(register_Obj, myFile){
 
                 //Build query to insert into business_hours
                 for (var key in timeObj) {
+                    // create time SQL
                     let time_sql = "INSERT INTO business_hours"  +
                     "(restaurant_id, day, opening_time, closing_time) VALUES" +
                     "('"+ result.insertId +"', '"+ key+"', '"+ timeObj[key][0] +"', '"+ timeObj[key][1] +"')";
@@ -146,12 +173,14 @@ async function postResto(register_Obj, myFile){
                         }
                     });
                 }
+                // save the file to folder uploads
                 myFile.mv('./restoFinderApp/uploads/' + result.insertId + "_" + myFile.name, function(err) {
                     if (err)
                         return response.status(500).send('{"filename": "' +
                             myFile.name + '", "upload": false, "error": "' +
                             JSON.stringify(err) + '"}');
                 });
+                // create sql to update filename 
                 let fileSQL = "UPDATE restaurant SET fileName = '"+ result.insertId + "_" + myFile.name +"' WHERE id =" + result.insertId;
 
                 connectionPool.query(fileSQL, (fileErr, FileResult) => {
@@ -185,8 +214,9 @@ async function addReview(reviewObj){
         });
     });
   }
+
 /* Returns a promise to get reviews. */
-async function getReview(restoID){
+async function getReview(){
     //Build query
     let sql = "SELECT * FROM review";
   
@@ -202,29 +232,6 @@ async function getReview(restoID){
         });
     });
   }
-//Execute promise
-getRegion().then ( result => {
-  //Append to region Array.
-  regionArray = JSON.stringify(result);
-
-}).catch( err => {//Handle the error
-  console.error(JSON.stringify(err));
-});
-
-//Set up application to handle GET requests 
-app.get('/region', handleGetRegionRequest);//Returns all regions
-app.get('/region/:data', handleGetRegionRequest);//Returns specific region
-app.get('/checklogin', checklogin);//Checks to see if user is logged in.
-app.get('/logout', logout);//Logs user out
-app.get('/getReview', handleGetReviewRequest);//Logs user out
-
-//Set up application to handle POST requests
-app.post('/validateUsr', handlePostUsrRequest);//Validate user
-app.post('/registerResto', handlePostRestoRequest);//Register restaurant
-app.post('/postReview', handlePostReviewRequest);//Register reviews
-
-//Start the app listening on port 8080
-app.listen(8080);
 
 //Handles GET requests to our web service
 function handleGetRegionRequest(request, response){
@@ -347,6 +354,7 @@ function logout(request, response){
     });
 }
 
+// function to post review
 function handlePostReviewRequest(request, response){
     //Split the path of the request into its components
     var pathArray = request.url.split("/");
@@ -370,6 +378,7 @@ function handlePostReviewRequest(request, response){
         response.send("{error: 'Path not recognized'}");
 }
 
+// function to get reviews
 function handleGetReviewRequest(request, response) {
     //Split the path of the request into its components
     var pathArray = request.url.split("/");
