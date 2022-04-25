@@ -21,14 +21,7 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "986e26db-6492-49fe-b099-ccd12e416d64",
-      "comment": "",
-      "command": "runScript",
-      "target": "window.scrollTo(0,19.200000762939453)",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "e4635ac7-62a8-492f-b39d-226cf9df5fae",
+      "id": "62cbe5bb-15cf-42e2-95c0-8289c3793b1c",
       "comment": "",
       "command": "click",
       "target": "id=search_bar",
@@ -40,14 +33,14 @@
       ],
       "value": ""
     }, {
-      "id": "277fbcec-eb6c-443d-aee9-8c40fdbaee52",
+      "id": "fcdfa577-0b48-43a0-b071-32b18a5c2601",
       "comment": "",
       "command": "select",
       "target": "id=search_bar",
       "targets": [],
-      "value": "label=North"
+      "value": "label=West"
     }, {
-      "id": "ee2e81b7-82bb-4e58-b724-7198b0829cd3",
+      "id": "be6df310-683f-41ca-aa9a-df30e12f226f",
       "comment": "",
       "command": "click",
       "target": "id=searchRegion",
@@ -61,22 +54,20 @@
       ],
       "value": ""
     }, {
-      "id": "2170af37-0a3a-436f-a1b4-61381f8e9c96",
+      "id": "986e26db-6492-49fe-b099-ccd12e416d64",
       "comment": "",
       "command": "runScript",
-      "target": "window.scrollTo(0,73.5999984741211)",
+      "target": "window.scrollTo(0,19.200000762939453)",
       "targets": [],
       "value": ""
     }, {
-      "id": "316aff5d-272a-49de-860d-afbad83ef20b",
+      "id": "41fc0926-0ec0-4583-8785-0df0c771b87c",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "css=.accordion-button",
+      "target": "css=.accordion",
       "targets": [
-        ["css=.accordion-button", "css:finder"],
-        ["xpath=//button[@type='button']", "xpath:attributes"],
-        ["xpath=//div[@id='39']/h2/button", "xpath:idRelative"],
-        ["xpath=//h2/button", "xpath:position"]
+        ["css=.accordion", "css:finder"],
+        ["xpath=//body/div[6]", "xpath:position"]
       ],
       "value": ""
     }]

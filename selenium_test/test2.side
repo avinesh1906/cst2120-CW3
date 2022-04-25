@@ -45,7 +45,7 @@
       "command": "select",
       "target": "id=search_bar",
       "targets": [],
-      "value": "label=North"
+      "value": "label=West"
     }, {
       "id": "ee2e81b7-82bb-4e58-b724-7198b0829cd3",
       "comment": "",
